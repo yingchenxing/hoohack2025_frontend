@@ -158,7 +158,7 @@ export const Lid = ({
           src={src as string}
           alt="aceternity logo"
           fill
-          className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top"
+          className="absolute inset-0 h-full w-full rounded-lg object-fill object-left-top"
         />
       </motion.div>
     </div>

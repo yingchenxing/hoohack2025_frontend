@@ -25,6 +25,7 @@ type Subject = {
 
 export default function AboutPage() {
   const ref = useRef(null)
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
@@ -68,7 +69,7 @@ export default function AboutPage() {
       description:
         'Explore cosmic phenomena like black holes, gravitational waves, and stellar evolution with immersive space visualizations.',
       link: '/subjects/astro',
-      videoFile: 'AstrophysicsScene.mp4',
+      videoFile: 'BlackHoleExplainer.mp4',
     },
     {
       title: 'Electromagnetic Fields',
@@ -82,16 +83,24 @@ export default function AboutPage() {
       description:
         'Watch molecular transformations, electron transfers, and reaction mechanisms unfold in real-time 3D simulations.',
       link: '/subjects/chemistry',
-      videoFile: 'ChemicalReactionsScene.mp4',
+      videoFile: 'WaterIonizationEquilibrium.mp4',
     },
     {
       title: 'Complex Systems',
       description:
         'Visualize emergent behaviors, chaos theory, and network dynamics through interactive system modeling.',
       link: '/subjects/complex-systems',
-      videoFile: 'ComplexSystemsScene.mp4',
+      videoFile: 'AntColonyOptimization.mp4',
     },
   ]
+
+  React.useEffect(() => {
+    videoRefs.current.forEach((video) => {
+      if (video) {
+        video.playbackRate = 2
+      }
+    })
+  }, [])
 
   return (
     <div className="min-h-screen p-4 md:p-8 bg-black">
@@ -245,8 +254,198 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-32">
-          <ExpandableCardDemo />
+          <div className="w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+            <h1 className="text-5xl font-bold text-center text-white relative z-20">
+              More Examples
+            </h1>
+            <div className="w-[60rem] h-20 relative">
+              {/* Gradients */}
+              <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
+              <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
+              <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
+              <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
+
+              {/* Radial Gradient to prevent sharp edges */}
+              <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+            </div>
+          </div>
+          <WobbleCard containerClassName="mt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
+                title: 'Water Ionization Equilibrium',
+                description: 'Watch molecular transformations and electron transfers in real-time 3D simulations.',
+                link: '/subjects/chemistry',
+                videoFile: 'WaterIonizationEquilibrium.mp4'
+              })}>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">Water Ionization Equilibrium</h3>
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[0] = el
+                    }}
+                    src="/videos/WaterIonizationEquilibrium.mp4"
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
+                title: 'Electromagnetic Fields Theory',
+                description: 'Understand electromagnetic interactions and field lines through dynamic visualizations.',
+                link: '/subjects/em-fields',
+                videoFile: 'ElectromagneticScene.mp4'
+              })}>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">Electromagnetic Fields Theory</h3>
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[1] = el
+                    }}
+                    src="/videos/ElectromagneticScene.mp4"
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
+                title: 'Quantum Phenomena',
+                description: 'Visualize complex quantum phenomena like wave-particle duality and quantum entanglement.',
+                link: '/subjects/quantum',
+                videoFile: 'QuantumPhenomenaScene.mp4'
+              })}>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">Quantum Phenomena</h3>
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[2] = el
+                    }}
+                    src="/videos/QuantumPhenomenaScene.mp4"
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
+                title: 'Structure of DNA and RNA',
+                description: 'Experience cellular processes and DNA replication through interactive molecular visualizations.',
+                link: '/subjects/molecular',
+                videoFile: 'MolecularBiologyScene.mp4'
+              })}>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">Structure of DNA and RNA</h3>
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[3] = el
+                    }}
+                    src="/videos/MolecularBiologyScene.mp4"
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
+                title: 'Black Hole Theory',
+                description: 'Explore cosmic phenomena like black holes and gravitational waves with immersive space visualizations.',
+                link: '/subjects/astro',
+                videoFile: 'BlackHoleExplainer.mp4'
+              })}>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">Black Hole Theory</h3>
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[4] = el
+                    }}
+                    src="/videos/BlackHoleExplainer.mp4"
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
+                title: 'Ant Colony Optimization',
+                description: 'Visualize emergent behaviors and network dynamics through interactive system modeling.',
+                link: '/subjects/complex-systems',
+                videoFile: 'AntColonyOptimization.mp4'
+              })}>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">Ant Colony Optimization</h3>
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[5] = el
+                    }}
+                    src="/videos/AntColonyOptimization.mp4"
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
+                title: 'Database B+ Tree',
+                description: 'Visualize database indexing structures and operations in real-time.',
+                link: '/subjects/database',
+                videoFile: 'Database.mp4'
+              })}>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">Database B+ Tree</h3>
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[6] = el
+                    }}
+                    src="/videos/Database.mp4"
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
+                title: 'Function Visualization',
+                description: 'Explore mathematical functions and their properties through dynamic visualizations.',
+                link: '/subjects/math',
+                videoFile: 'Math.mp4'
+              })}>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">Function Visualization</h3>
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[7] = el
+                    }}
+                    src="/videos/Math.mp4"
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
+              </div>
+            </div>
+          </WobbleCard>
         </div>
+
+        {/* <div className="mt-32">
+          <ExpandableCardDemo />
+        </div> */}
 
         <MacbookScroll
           title={
