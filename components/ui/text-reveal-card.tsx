@@ -77,6 +77,7 @@ export const TextRevealCard = ({
           style={{
             width: '100%',
           }}
+          initial={{ opacity: 0 }}
           animate={
             isMouseOver
               ? {
@@ -93,7 +94,7 @@ export const TextRevealCard = ({
             style={{
               textShadow: '4px 4px 15px rgba(0,0,0,0.5)',
             }}
-            className="text-base sm:text-[3rem] py-10 font-bold text-white">
+            className="text-base sm:text-[3rem] py-10 font-bold text-white/40">
             {revealText}
           </p>
         </motion.div>
@@ -113,7 +114,7 @@ export const TextRevealCard = ({
               clipPath: `inset(0 0 0 ${widthPercentage}%)`,
             }}
             transition={isMouseOver ? { duration: 0 } : { duration: 0.4 }}
-            className="text-base sm:text-[3rem] py-10 font-bold text-white/40">
+            className="text-base sm:text-[3rem] py-10 font-bold text-white font-lighters font-extralight">
             {text}
           </motion.p>
         </div>

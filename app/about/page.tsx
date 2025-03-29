@@ -13,7 +13,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-
+import ExpandableCardDemo from '@/components/expandable-card-demo-grid'
+import { Link } from 'lucide-react'
+import { MacbookScroll } from '@/components/ui/macbook-scroll'
 type Subject = {
   title: string
   description: string
@@ -133,8 +135,8 @@ export default function AboutPage() {
           <div className="text-center">
             <div className="mb-8">
               <TextRevealCard
-                text="Sometimes you just neet to see it"
-                revealText="SciViz AI"
+                revealText="Sometimes you just neet to see it"
+                text="SciViz AI"
                 className="w-full bg-transparent border-none shadow-none"></TextRevealCard>
             </div>
             <p className="text-lg md:text-xl text-neutral-200 mb-16">
@@ -157,7 +159,7 @@ export default function AboutPage() {
                 className="cursor-pointer"
                 glowColor="rgba(168, 85, 247, 0.6)" // 紫色光晕
                 onClick={() => {
-                  window.location.href = '/app'
+                  window.location.href = '/playground'
                 }}>
                 Try it Now
               </GlowingButton>
@@ -241,6 +243,20 @@ export default function AboutPage() {
             className="mt-0"
           />
         </div>
+
+        <div className="mt-32">
+          <ExpandableCardDemo />
+        </div>
+
+        <MacbookScroll
+          title={
+            <span>
+              This Macbook is built with Tailwindcss. <br /> No kidding.
+            </span>
+          }
+          src={`/images/demo.png`}
+          showGradient={false}
+        />
       </div>
     </div>
   )

@@ -1,5 +1,29 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@font-face {
+  font-family: 'lighters';
+  src: url('/fonts/lighters-lighters-extra-light-100.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'lighters';
+  src: url('/fonts/lighters-lighters-light-200.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'lighters';
+  src: url('/fonts/lighters-lighters-regular-400.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -41,6 +65,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --font-lighters: 'lighters', system-ui, sans-serif;
 }
 
 :root {
@@ -76,6 +101,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --font-lighters: 'lighters', system-ui, sans-serif;
 }
 
 .dark {
@@ -118,5 +144,8 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  :root {
+    --font-lighters: 'lighters', system-ui, sans-serif;
   }
 }
