@@ -109,7 +109,8 @@ export const TextRevealCard = ({
         <div className="overflow-hidden text-center w-full">
           <motion.p
             animate={{
-              opacity: widthPercentage > 0 ? 0 : 1,
+              opacity: 1,
+              clipPath: `inset(0 0 0 ${widthPercentage}%)`,
             }}
             transition={isMouseOver ? { duration: 0 } : { duration: 0.4 }}
             className="text-base sm:text-[3rem] py-10 font-bold text-white/40">

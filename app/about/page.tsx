@@ -1,17 +1,26 @@
 'use client'
 import { WobbleCard } from '@/components/ui/wobble-card'
 import { HoverEffect } from '@/components/ui/card-hover-effect'
-import { GoogleGeminiEffect } from '@/components/ui/google-gemini-effect'
 import { useScroll, useTransform } from 'motion/react'
 import Image from 'next/image'
 import React, { useRef } from 'react'
 import { WavyBackground } from '@/components/ui/wavy-background'
 import { GlowingButton } from '@/components/ui/glowing-button'
+import { TextRevealCard } from '@/components/ui/text-reveal-card'
 import {
-  TextRevealCard,
-  TextRevealCardTitle,
-  TextRevealCardDescription,
-} from '@/components/ui/text-reveal-card'
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+
+type Subject = {
+  title: string
+  description: string
+  link: string
+  videoFile: string
+}
+
 export default function AboutPage() {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -33,47 +42,78 @@ export default function AboutPage() {
   )
   const pathLengthFifth = useTransform(scrollYProgress, [0.1, 0.4], [0, 1.2])
 
-  const subjects = [
+  const [selectedSubject, setSelectedSubject] = React.useState<Subject | null>(
+    null
+  )
+
+  const subjects: Subject[] = [
     {
-      title: 'Mathematics',
+      title: 'Quantum Mechanics',
       description:
-        "Includes core courses like Advanced Mathematics, Linear Algebra, and Probability & Statistics, developing students' logical thinking and problem-solving abilities.",
-      link: '/subjects/math',
+        'Visualize complex quantum phenomena like wave-particle duality, quantum entanglement, and superposition through dynamic 3D animations.',
+      link: '/subjects/quantum',
+      videoFile: 'QuantumPhenomenaScene.mp4',
     },
     {
-      title: 'Physics',
+      title: 'Molecular Biology',
       description:
-        'Covers mechanics, electromagnetism, thermodynamics, and optics through experimental and theoretical learning to understand natural laws.',
-      link: '/subjects/physics',
+        'Experience cellular processes, DNA replication, and protein synthesis through interactive molecular visualizations.',
+      link: '/subjects/molecular',
+      videoFile: 'MolecularBiologyScene.mp4',
     },
     {
-      title: 'Chemistry',
+      title: 'Astrophysics',
       description:
-        'Study of organic chemistry, inorganic chemistry, and physical chemistry to understand material structures and transformation principles.',
+        'Explore cosmic phenomena like black holes, gravitational waves, and stellar evolution with immersive space visualizations.',
+      link: '/subjects/astro',
+      videoFile: 'AstrophysicsScene.mp4',
+    },
+    {
+      title: 'Electromagnetic Fields',
+      description:
+        'Understand electromagnetic interactions, field lines, and wave propagation through dynamic field visualizations.',
+      link: '/subjects/em-fields',
+      videoFile: 'ElectromagneticScene.mp4',
+    },
+    {
+      title: 'Chemical Reactions',
+      description:
+        'Watch molecular transformations, electron transfers, and reaction mechanisms unfold in real-time 3D simulations.',
       link: '/subjects/chemistry',
+      videoFile: 'ChemicalReactionsScene.mp4',
     },
     {
-      title: 'Biology',
+      title: 'Complex Systems',
       description:
-        'Explores life science fundamentals, including molecular biology, cell biology, and genetics.',
-      link: '/subjects/biology',
-    },
-    {
-      title: 'Computer Science',
-      description:
-        'Learn programming, algorithms, data structures, artificial intelligence, and modern computing technologies.',
-      link: '/subjects/cs',
-    },
-    {
-      title: 'Engineering',
-      description:
-        'Fundamental and applied knowledge in mechanical, electrical, civil, and other engineering disciplines.',
-      link: '/subjects/engineering',
+        'Visualize emergent behaviors, chaos theory, and network dynamics through interactive system modeling.',
+      link: '/subjects/complex-systems',
+      videoFile: 'ComplexSystemsScene.mp4',
     },
   ]
 
   return (
     <div className="min-h-screen p-4 md:p-8 bg-black">
+      <Dialog
+        open={!!selectedSubject}
+        onOpenChange={(open) => !open && setSelectedSubject(null)}>
+        <DialogContent className="sm:max-w-[800px]">
+          <DialogHeader>
+            <DialogTitle>{selectedSubject?.title} Visualization</DialogTitle>
+          </DialogHeader>
+          <div className="aspect-video relative">
+            {selectedSubject && (
+              <video
+                key={selectedSubject.videoFile}
+                src={`/videos/${selectedSubject.videoFile}`}
+                className="w-full h-full rounded-lg"
+                controls
+                autoPlay
+              />
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <div className="max-w-5xl mx-auto w-full">
         <WavyBackground
           className="max-w-4xl"
@@ -93,13 +133,13 @@ export default function AboutPage() {
           <div className="text-center">
             <div className="mb-8">
               <TextRevealCard
-                text="Sometimes you just need to see it"
-                revealText="Name"
+                text="Sometimes you just neet to see it"
+                revealText="SciViz AI"
                 className="w-full bg-transparent border-none shadow-none"></TextRevealCard>
             </div>
             <p className="text-lg md:text-xl text-neutral-200 mb-16">
-              Empowering the next generation with cutting-edge AI and technology
-              education
+              Transform complex scientific concepts into stunning visual
+              experiences powered by AI
             </p>
             <div className="flex items-center justify-center space-x-4">
               <GlowingButton
@@ -131,11 +171,12 @@ export default function AboutPage() {
             className="">
             <div className="max-w-xs">
               <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                Gippity AI powers the entire universe
+                Advanced AI Visualization Engine
               </h2>
-              <p className="mt-4 text-left  text-base/6 text-neutral-200">
-                With over 100,000 mothly active bot users, Gippity AI is the
-                most popular AI platform for developers.
+              <p className="mt-4 text-left text-base/6 text-neutral-200">
+                Our state-of-the-art AI transforms complex scientific concepts
+                into intuitive visual narratives, making abstract theories
+                tangible and understandable.
               </p>
             </div>
             <Image
@@ -147,23 +188,23 @@ export default function AboutPage() {
             />
           </WobbleCard>
           <WobbleCard containerClassName="col-span-1 min-h-[300px]">
-            <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-              No shirt, no shoes, no weapons.
+            <h2 className="max-w-80 text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
+              Real-time Interactive Learning
             </h2>
-            <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
-              If someone yells "stop!", goes limp, or taps out, the fight is
-              over.
+            <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
+              Engage with scientific concepts through interactive visualizations
+              that respond to your queries in real-time.
             </p>
           </WobbleCard>
           <WobbleCard containerClassName="col-span-1 lg:col-span-3 bg-blue-900 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]">
             <div className="max-w-sm">
-              <h2 className="max-w-sm md:max-w-lg  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                Signup for blazing-fast cutting-edge state of the art Gippity AI
-                wrapper today!
+              <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
+                Experience the Future of Scientific Understanding
               </h2>
-              <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
-                With over 100,000 mothly active bot users, Gippity AI is the
-                most popular AI platform for developers.
+              <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
+                Join thousands of students and educators who are revolutionizing
+                their understanding of science through our AI-powered
+                visualizations.
               </p>
             </div>
             <Image
@@ -179,7 +220,7 @@ export default function AboutPage() {
         <div className="mt-32">
           <div className="w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
             <h1 className="text-5xl font-bold text-center text-white relative z-20">
-              Explore various subjects
+              Explore Scientific Domains
             </h1>
             <div className="w-[60rem] h-20 relative">
               {/* Gradients */}
@@ -192,7 +233,13 @@ export default function AboutPage() {
               <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
             </div>
           </div>
-          <HoverEffect items={subjects} className="mt-0" />
+          <HoverEffect
+            items={subjects.map((subject) => ({
+              ...subject,
+              onClick: () => setSelectedSubject(subject),
+            }))}
+            className="mt-0"
+          />
         </div>
       </div>
     </div>
