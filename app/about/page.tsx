@@ -223,7 +223,7 @@ export default function AboutPage() {
                   width={400}
                   height={400}
                   alt="linear demo image"
-                  className="object-contain rounded-2xl w-auto h-[250px]"
+                  className="object-contain rounded-2xl w-auto h-[200px]"
                 />
               </div>
             </div>

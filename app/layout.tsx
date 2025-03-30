@@ -1,16 +1,11 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter as FontSans } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const fontSans = FontSans({
   subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  variable: '--font-sans',
 })
 
 export const metadata: Metadata = {
@@ -20,18 +15,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="en" className="dark" style={{ colorScheme: 'dark' }}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${fontSans.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
-          disableTransitionOnChange>
+          disableTransitionOnChange
+          forcedTheme="dark">
           {children}
         </ThemeProvider>
       </body>
