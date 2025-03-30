@@ -205,8 +205,8 @@ export default function AboutPage() {
               that respond to your queries in real-time.
             </p>
           </WobbleCard>
-          <WobbleCard containerClassName="col-span-1 lg:col-span-3 bg-blue-900 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]">
-            <div className="flex flex-col lg:flex-row items-start w-full h-full relative">
+          <WobbleCard containerClassName="col-span-1 lg:col-span-3 bg-blue-900 min-h-[300px]">
+            <div className="flex flex-col lg:flex-row items-start justify-between w-full h-full relative">
               <div className="max-w-sm z-10">
                 <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
                   Experience the Future of Scientific Understanding
@@ -217,13 +217,13 @@ export default function AboutPage() {
                   AI-powered visualizations.
                 </p>
               </div>
-              <div className="absolute right-0 bottom-0 lg:relative lg:flex-1 flex justify-end items-end">
+              <div className="lg:w-1/2 flex justify-end items-center">
                 <Image
                   src="/images/demo2.gif"
                   width={400}
                   height={400}
                   alt="linear demo image"
-                  className="object-contain rounded-2xl w-[70%] lg:w-[80%] h-auto"
+                  className="object-contain rounded-2xl w-auto h-[250px]"
                 />
               </div>
             </div>
