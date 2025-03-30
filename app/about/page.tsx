@@ -13,8 +13,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import ExpandableCardDemo from '@/components/expandable-card-demo-grid'
-import { Link } from 'lucide-react'
 import { MacbookScroll } from '@/components/ui/macbook-scroll'
 type Subject = {
   title: string
@@ -86,11 +84,11 @@ export default function AboutPage() {
       videoFile: 'WaterIonizationEquilibrium.mp4',
     },
     {
-      title: 'Complex Systems',
+      title: 'Mathematics',
       description:
-        'Visualize emergent behaviors, chaos theory, and network dynamics through interactive system modeling.',
-      link: '/subjects/complex-systems',
-      videoFile: 'AntColonyOptimization.mp4',
+        'Explore mathematical concepts, functions, and geometric transformations through interactive visualizations.',
+      link: '/subjects/mathematics',
+      videoFile: 'Math.mp4',
     },
   ]
 
@@ -190,13 +188,13 @@ export default function AboutPage() {
                 tangible and understandable.
               </p>
             </div>
-            <Image
-              src="/linear.webp"
+            {/* <Image
+              src="/images/demo1.png"
               width={500}
               height={500}
               alt="linear demo image"
-              className="absolute -right-4 lg:-right-[40%] grayscale filter -bottom-10 object-contain rounded-2xl"
-            />
+              className="absolute -right-4 md:-right-[30%] lg:-right-[15%] -bottom-4 object-contain rounded-2xl"
+            /> */}
           </WobbleCard>
           <WobbleCard containerClassName="col-span-1 min-h-[300px]">
             <h2 className="max-w-80 text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
@@ -208,23 +206,27 @@ export default function AboutPage() {
             </p>
           </WobbleCard>
           <WobbleCard containerClassName="col-span-1 lg:col-span-3 bg-blue-900 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]">
-            <div className="max-w-sm">
-              <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                Experience the Future of Scientific Understanding
-              </h2>
-              <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
-                Join thousands of students and educators who are revolutionizing
-                their understanding of science through our AI-powered
-                visualizations.
-              </p>
+            <div className="flex flex-col lg:flex-row items-start w-full h-full relative">
+              <div className="max-w-sm z-10">
+                <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
+                  Experience the Future of Scientific Understanding
+                </h2>
+                <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
+                  Join thousands of students and educators who are
+                  revolutionizing their understanding of science through our
+                  AI-powered visualizations.
+                </p>
+              </div>
+              <div className="absolute right-0 bottom-0 lg:relative lg:flex-1 flex justify-end items-end">
+                <Image
+                  src="/images/demo2.gif"
+                  width={400}
+                  height={400}
+                  alt="linear demo image"
+                  className="object-contain rounded-2xl w-[70%] lg:w-[80%] h-auto"
+                />
+              </div>
             </div>
-            <Image
-              src="/linear.webp"
-              width={500}
-              height={500}
-              alt="linear demo image"
-              className="absolute -right-10 md:-right-[40%] lg:-right-[20%] -bottom-10 object-contain rounded-2xl"
-            />
           </WobbleCard>
         </div>
 
@@ -271,13 +273,20 @@ export default function AboutPage() {
           </div>
           <WobbleCard containerClassName="mt-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
-                title: 'Water Ionization Equilibrium',
-                description: 'Watch molecular transformations and electron transfers in real-time 3D simulations.',
-                link: '/subjects/chemistry',
-                videoFile: 'WaterIonizationEquilibrium.mp4'
-              })}>
-                <h3 className="text-white text-sm font-medium mb-2 text-center">Water Ionization Equilibrium</h3>
+              <div
+                className="flex flex-col cursor-pointer"
+                onClick={() =>
+                  setSelectedSubject({
+                    title: 'Water Ionization Equilibrium',
+                    description:
+                      'Watch molecular transformations and electron transfers in real-time 3D simulations.',
+                    link: '/subjects/chemistry',
+                    videoFile: 'WaterIonizationEquilibrium.mp4',
+                  })
+                }>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">
+                  Water Ionization Equilibrium
+                </h3>
                 <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
                   <video
                     ref={(el) => {
@@ -292,13 +301,20 @@ export default function AboutPage() {
                   />
                 </div>
               </div>
-              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
-                title: 'Electromagnetic Fields Theory',
-                description: 'Understand electromagnetic interactions and field lines through dynamic visualizations.',
-                link: '/subjects/em-fields',
-                videoFile: 'ElectromagneticScene.mp4'
-              })}>
-                <h3 className="text-white text-sm font-medium mb-2 text-center">Electromagnetic Fields Theory</h3>
+              <div
+                className="flex flex-col cursor-pointer"
+                onClick={() =>
+                  setSelectedSubject({
+                    title: 'Electromagnetic Fields Theory',
+                    description:
+                      'Understand electromagnetic interactions and field lines through dynamic visualizations.',
+                    link: '/subjects/em-fields',
+                    videoFile: 'ElectromagneticScene.mp4',
+                  })
+                }>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">
+                  Electromagnetic Fields Theory
+                </h3>
                 <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
                   <video
                     ref={(el) => {
@@ -313,13 +329,20 @@ export default function AboutPage() {
                   />
                 </div>
               </div>
-              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
-                title: 'Quantum Phenomena',
-                description: 'Visualize complex quantum phenomena like wave-particle duality and quantum entanglement.',
-                link: '/subjects/quantum',
-                videoFile: 'QuantumPhenomenaScene.mp4'
-              })}>
-                <h3 className="text-white text-sm font-medium mb-2 text-center">Quantum Phenomena</h3>
+              <div
+                className="flex flex-col cursor-pointer"
+                onClick={() =>
+                  setSelectedSubject({
+                    title: 'Quantum Phenomena',
+                    description:
+                      'Visualize complex quantum phenomena like wave-particle duality and quantum entanglement.',
+                    link: '/subjects/quantum',
+                    videoFile: 'QuantumPhenomenaScene.mp4',
+                  })
+                }>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">
+                  Quantum Phenomena
+                </h3>
                 <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
                   <video
                     ref={(el) => {
@@ -334,13 +357,20 @@ export default function AboutPage() {
                   />
                 </div>
               </div>
-              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
-                title: 'Structure of DNA and RNA',
-                description: 'Experience cellular processes and DNA replication through interactive molecular visualizations.',
-                link: '/subjects/molecular',
-                videoFile: 'MolecularBiologyScene.mp4'
-              })}>
-                <h3 className="text-white text-sm font-medium mb-2 text-center">Structure of DNA and RNA</h3>
+              <div
+                className="flex flex-col cursor-pointer"
+                onClick={() =>
+                  setSelectedSubject({
+                    title: 'Structure of DNA and RNA',
+                    description:
+                      'Experience cellular processes and DNA replication through interactive molecular visualizations.',
+                    link: '/subjects/molecular',
+                    videoFile: 'MolecularBiologyScene.mp4',
+                  })
+                }>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">
+                  Structure of DNA and RNA
+                </h3>
                 <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
                   <video
                     ref={(el) => {
@@ -355,13 +385,20 @@ export default function AboutPage() {
                   />
                 </div>
               </div>
-              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
-                title: 'Black Hole Theory',
-                description: 'Explore cosmic phenomena like black holes and gravitational waves with immersive space visualizations.',
-                link: '/subjects/astro',
-                videoFile: 'BlackHoleExplainer.mp4'
-              })}>
-                <h3 className="text-white text-sm font-medium mb-2 text-center">Black Hole Theory</h3>
+              <div
+                className="flex flex-col cursor-pointer"
+                onClick={() =>
+                  setSelectedSubject({
+                    title: 'Black Hole Theory',
+                    description:
+                      'Explore cosmic phenomena like black holes and gravitational waves with immersive space visualizations.',
+                    link: '/subjects/astro',
+                    videoFile: 'BlackHoleExplainer.mp4',
+                  })
+                }>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">
+                  Black Hole Theory
+                </h3>
                 <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
                   <video
                     ref={(el) => {
@@ -376,13 +413,76 @@ export default function AboutPage() {
                   />
                 </div>
               </div>
-              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
-                title: 'Ant Colony Optimization',
-                description: 'Visualize emergent behaviors and network dynamics through interactive system modeling.',
-                link: '/subjects/complex-systems',
-                videoFile: 'AntColonyOptimization.mp4'
-              })}>
-                <h3 className="text-white text-sm font-medium mb-2 text-center">Ant Colony Optimization</h3>
+              <div
+                className="flex flex-col cursor-pointer"
+                onClick={() =>
+                  setSelectedSubject({
+                    title: 'Database B+ Tree',
+                    description:
+                      'Visualize database indexing structures and operations in real-time.',
+                    link: '/subjects/database',
+                    videoFile: 'Database.mp4',
+                  })
+                }>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">
+                  Database B+ Tree
+                </h3>
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[5] = el
+                    }}
+                    src="/videos/Database.mp4"
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
+              </div>
+              <div
+                className="flex flex-col cursor-pointer"
+                onClick={() =>
+                  setSelectedSubject({
+                    title: 'Function Visualization',
+                    description:
+                      'Explore mathematical functions and their properties through dynamic visualizations.',
+                    link: '/subjects/math',
+                    videoFile: 'Math.mp4',
+                  })
+                }>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">
+                  Function Visualization
+                </h3>
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
+                  <video
+                    ref={(el) => {
+                      if (el) videoRefs.current[6] = el
+                    }}
+                    src="/videos/Math.mp4"
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
+              </div>
+              <div
+                className="flex flex-col cursor-pointer"
+                onClick={() =>
+                  setSelectedSubject({
+                    title: 'Ant Colony Optimization',
+                    description:
+                      'Visualize emergent behaviors and network dynamics through interactive system modeling.',
+                    link: '/subjects/complex-systems',
+                    videoFile: 'AntColonyOptimization.mp4',
+                  })
+                }>
+                <h3 className="text-white text-sm font-medium mb-2 text-center">
+                  Ant Colony Optimization
+                </h3>
                 <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
                   <video
                     ref={(el) => {
@@ -397,61 +497,22 @@ export default function AboutPage() {
                   />
                 </div>
               </div>
-              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
-                title: 'Database B+ Tree',
-                description: 'Visualize database indexing structures and operations in real-time.',
-                link: '/subjects/database',
-                videoFile: 'Database.mp4'
-              })}>
-                <h3 className="text-white text-sm font-medium mb-2 text-center">Database B+ Tree</h3>
-                <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
-                  <video
-                    ref={(el) => {
-                      if (el) videoRefs.current[6] = el
-                    }}
-                    src="/videos/Database.mp4"
-                    className="w-full h-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col cursor-pointer" onClick={() => setSelectedSubject({
-                title: 'Function Visualization',
-                description: 'Explore mathematical functions and their properties through dynamic visualizations.',
-                link: '/subjects/math',
-                videoFile: 'Math.mp4'
-              })}>
-                <h3 className="text-white text-sm font-medium mb-2 text-center">Function Visualization</h3>
-                <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-shadow duration-300">
-                  <video
-                    ref={(el) => {
-                      if (el) videoRefs.current[7] = el
-                    }}
-                    src="/videos/Math.mp4"
-                    className="w-full h-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  />
-                </div>
-              </div>
             </div>
           </WobbleCard>
         </div>
 
-        {/* <div className="mt-32">
-          <ExpandableCardDemo />
-        </div> */}
-
         <MacbookScroll
           title={
-            <span>
-              This Macbook is built with Tailwindcss. <br /> No kidding.
-            </span>
+            <div className="flex flex-col items-center gap-8">
+              <GlowingButton
+                className="cursor-pointer [zoom:1.8]"
+                glowColor="rgba(168, 85, 247, 0.6)"
+                onClick={() => {
+                  window.location.href = '/playground'
+                }}>
+                Try it Now
+              </GlowingButton>
+            </div>
           }
           src={`/images/demo.png`}
           showGradient={false}
